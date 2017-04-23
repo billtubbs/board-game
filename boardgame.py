@@ -5,18 +5,18 @@ screen = pygame.display.set_mode((640, 480))
 
 black = (0, 0, 0)
 white = (255, 255, 255)
+grey = (192, 192, 192)
 dark_grey = (48, 48, 48)
 red = (255, 0, 0)
 
+# Create board with gridlines
 board = pygame.Surface((430, 430))
 board.fill(dark_grey)
+for i in range(1, 4):
+    pygame.draw.rect(board, grey, (0, -7 + i*110, 430, 4))
+    pygame.draw.rect(board, grey, (-7 + i*110, 0, 4, 430))
 
-gridline_horiz = pygame.Surface((430, 4))
-gridline_horiz.fill((192, 192, 192))
-
-gridline_vert = pygame.Surface((4, 430))
-gridline_vert.fill((192, 192, 192))
-
+# Create object
 object1 = pygame.Surface((100, 100))
 object1.fill(dark_grey)
 pygame.draw.circle(object1, red, (50, 50), 50)
@@ -30,11 +30,8 @@ while not done:
     # Clear the screen
     screen.fill(black)
 
-    # Draw board and gridlines
+    # Draw board
     screen.blit(board, (105, 20))
-    for i in range(1, 4):
-        screen.blit(gridline_horiz, (105, 20 - 7 + i*110))
-        screen.blit(gridline_vert, (105 - 7 + i*110, 20))
 
     # Draw objects
     screen.blit(object1, (105 + x*110, 20 + y*110))
